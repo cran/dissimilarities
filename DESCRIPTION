@@ -1,7 +1,7 @@
 Package: dissimilarities
 Type: Package
 Title: Creating, Manipulating, and Subsetting "dist" Objects
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: person(given = "Minh Long",
                   family = "Nguyen",
                   role = c("aut", "cre"),
@@ -18,7 +18,7 @@ RoxygenNote: 7.3.2
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: yes
-Packaged: 2025-05-17 06:50:40 UTC; edelweiss
+Packaged: 2025-05-17 10:08:52 UTC; edelweiss
 Author: Minh Long Nguyen [aut, cre]
 Repository: CRAN
-Date/Publication: 2025-05-17 07:10:02 UTC
+Date/Publication: 2025-05-17 22:00:07 UTC
