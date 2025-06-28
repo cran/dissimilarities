@@ -31,8 +31,11 @@ Efficiently appends new "rows" to an existing "dist" object without explicitly r
 }
 \details{
 Expands an existing distance matrix of class "dist" for matrix A, given new data B,
-without explicitly computing the distance matrix of rbind(A,B).
-This supports multiple commonly used distance measures and is optimised for speed.
+without explicitly computing the distance matrix of rbind(A,B). This supports multiple commonly
+used distance measures and is optimised for speed.
+
+Row names are retained. If either rownames(A) or rownames(B) is null, as.character(1:(nrow(A)+nrow(B)))
+will be used as row names instead.
 }
 \examples{
 

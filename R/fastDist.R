@@ -13,11 +13,13 @@
 #' @param p A positive integer, required for computing Minkowski distance; by default p = 2 (i.e., Euclidean).
 #'
 #' @details
-#' Calculates pairwise distances between rows of a numeric matrix and returns the result as a compact "dist" object, which stores
-#' the lower-triangular entries of a complete distance matrix. Supports multiple distance measures, including "euclidean",
-#' "manhattan", "maximum", "minkowski", "cosine", and "canberra".
+#' Calculates pairwise distances between rows of a numeric matrix and returns the result as a compact
+#' "dist" object, which stores the lower-triangular entries of a complete distance matrix. Supports
+#' multiple distance measures, including "euclidean", "manhattan", "maximum", "minkowski", "cosine",
+#' and "canberra". This implementation is optimised for speed,
+#' especially on large matrices.
 #'
-#' This implementation is optimised for speed, especially on large matrices.
+#' Row names are retained. If it is null, as.character(1:nrow(X)) will be used as row names instead.
 #'
 #' @importFrom microbenchmark microbenchmark
 #' @importFrom proxy dist
@@ -46,7 +48,15 @@ fastDist = function(X, method = "euclidean", diag = FALSE, upper = FALSE, p = 2L
   checkMethod(method)
   p = checkP(p) #double to int conversion
 
-  return(.fastDistCpp(X, method, diag, upper, p))
+  distObj = .fastDistCpp(X, method, diag, upper, p)
+
+  if(is.null(rownames(X))){
+    attr(distObj, which = "Labels") = as.character(1:attr(distObj, "Size"))
+  } else {
+    attr(distObj, which = "Labels") = rownames(X)
+  }
+
+  return(distObj)
 
 }
 
